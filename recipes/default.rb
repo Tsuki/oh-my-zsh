@@ -20,8 +20,7 @@
 include_recipe "git"
 include_recipe "zsh"
 
-Array(node['oh-my-zsh']).each do |u|
-  user_id = u["user"]
+  user_id = node['oh-my-zsh']["user"]
 
   git "/home/#{user_id}/.oh-my-zsh" do
     repository "https://github.com/robbyrussell/oh-my-zsh.git"
@@ -43,4 +42,3 @@ Array(node['oh-my-zsh']).each do |u|
     action :create_if_missing
     only_if { ::File.exists?("/home/#{user_id}") }
   end
-end
