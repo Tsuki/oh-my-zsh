@@ -20,8 +20,8 @@
 include_recipe "git"
 include_recipe "zsh"
 
-search( :users, "shell:*zsh AND NOT action:remove" ).each do |u|
-  user_id = u["id"]
+Array(node['oh-my-zsh']).each do |u|
+  user_id = u["user"]
 
   git "/home/#{user_id}/.oh-my-zsh" do
     repository "https://github.com/robbyrussell/oh-my-zsh.git"
